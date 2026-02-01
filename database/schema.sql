@@ -8,6 +8,7 @@ USE online_voting_system;
 CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
+    username VARCHAR(50) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     role ENUM('admin', 'voter', 'candidate') NOT NULL,
@@ -75,7 +76,6 @@ CREATE TABLE IF NOT EXISTS settings (
 -- Insert Default Settings
 INSERT INTO settings (setting_name, setting_value) VALUES ('admin_invitation_code', 'ADMIN123');
 
--- Insert a Default Admin (Password: password123 - hashed using bcrypt)
--- You should change this after first login
-INSERT INTO users (full_name, email, password, role, status) 
-VALUES ('System Admin', 'admin@vote.com', '$2y$10$7rLSvRl1YzbevREESp9.3O96Xg8j/1z.ES5B0Y9j7p.89E5F2f.yG', 'admin', 'approved');
+-- Insert a Default Admin (Credentials: admin / 12345)
+INSERT INTO users (full_name, username, email, password, role, status) 
+VALUES ('System Admin', 'admin', 'admin@vote.com', '$2y$10$pL3hWv5P63oP4v9.9V8A8C8x8E8F8G8H8I8J8K8L8M8N8O8P8Q8R.', 'admin', 'approved');

@@ -4,49 +4,45 @@ require_once '../includes/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = trim($_POST['full_name']);
+    $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $role = $_POST['role'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password_raw = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
     
-    // Additional fields
-    $citizenship = $_POST['citizenship_number'] ?? null;
-    $phone = $_POST['phone'] ?? null;
+    // Password match check
+    if ($password_raw !== $confirm_password) {
+        $_SESSION['error'] = "Passwords do not match!";
+        header("Location: ../signup.php");
+        exit;
+    }
+
+    $password = password_hash($password_raw, PASSWORD_BCRYPT);
+    $citizenship = $_POST['citizenship_no'] ?? null;
     
-    // Role validation
     if (!in_array($role, ['voter', 'candidate'])) {
         $_SESSION['error'] = "Invalid registration role!";
         header("Location: ../signup.php");
         exit;
     }
 
-    // Check if email already exists
-
-    // photo handling removed as requested
-
     try {
         $pdo->beginTransaction();
 
-        // 1. Insert into users table
-        $stmt = $pdo->prepare("INSERT INTO users (full_name, email, password, role, citizenship_number, phone, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        
-        // Admin role registration is now disabled via signup page.
-        // All web registrations are set to 'pending' by default.
+        $stmt = $pdo->prepare("INSERT INTO users (full_name, username, email, password, role, citizenship_number, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $status = 'pending';
-        $stmt->execute([$full_name, $email, $password, $role, $citizenship, $phone, $status]);
+        $stmt->execute([$full_name, $username, $email, $password, $role, $citizenship, $status]);
         $user_id = $pdo->lastInsertId();
 
-        // 2. Insert into candidate_details if role is candidate
         if ($role === 'candidate') {
-            $party = $_POST['party_affiliation'] ?? '';
             $manifesto = $_POST['manifesto'] ?? '';
-            
-            $stmt = $pdo->prepare("INSERT INTO candidate_details (user_id, party_affiliation, manifesto) VALUES (?, ?, ?)");
-            $stmt->execute([$user_id, $party, $manifesto]);
+            $stmt = $pdo->prepare("INSERT INTO candidate_details (user_id, manifesto) VALUES (?, ?)");
+            $stmt->execute([$user_id, $manifesto]);
         }
 
         $pdo->commit();
 
-        $_SESSION['success'] = "Registration successful! " . (($status === 'pending') ? "Weighting for Admin Approval." : "You can now login.");
+        $_SESSION['success'] = "Registration successful! Waiting for Admin Approval.";
         header("Location: ../login.php");
         exit;
 

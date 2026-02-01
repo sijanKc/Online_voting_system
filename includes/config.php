@@ -30,7 +30,8 @@ if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'] === 'ne' ? 'ne' : 'en';
 }
 $lang = $_SESSION['lang'] ?? 'en';
-$translations = require_once "c:/xampp/htdocs/online_voting_system/languages/$lang.php";
+$lang_file = dirname(__DIR__) . "/languages/$lang.php";
+$translations = file_exists($lang_file) ? include($lang_file) : [];
 
 // Helper function for translations
 function __($key) {
