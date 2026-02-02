@@ -14,6 +14,9 @@
         <a href="user_approvals.php" class="nav-link-admin <?php echo basename($_SERVER['PHP_SELF']) == 'user_approvals.php' ? 'active' : ''; ?>">
             <i class="fas fa-user-check"></i> User Approvals
         </a>
+        <a href="voter_list.php" class="nav-link-admin <?php echo basename($_SERVER['PHP_SELF']) == 'voter_list.php' ? 'active' : ''; ?>">
+            <i class="fas fa-address-book"></i> Voter Roll
+        </a>
         <a href="elections.php" class="nav-link-admin <?php echo basename($_SERVER['PHP_SELF']) == 'elections.php' ? 'active' : ''; ?>">
             <i class="fas fa-vote-yea"></i> Elections
         </a>

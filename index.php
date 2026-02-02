@@ -76,8 +76,12 @@
                     <li class="nav-item ms-lg-3">
                         <a class="btn btn-outline-primary px-4 rounded-pill fw-bold small" href="login.php"><?php echo __('login'); ?></a>
                     </li>
-                    <li class="nav-item ms-lg-2">
-                        <a class="btn btn-primary px-4 rounded-pill fw-bold shadow-sm small" href="signup.php"><?php echo __('register'); ?></a>
+                    <li class="nav-item dropdown ms-lg-2">
+                        <a class="btn btn-primary px-4 rounded-pill fw-bold shadow-sm small dropdown-toggle" href="#" data-bs-toggle="dropdown"><?php echo __('register'); ?></a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3 mt-2">
+                            <li><a class="dropdown-item py-2" href="voter_signup.php"><i class="fas fa-user me-2 theme-text"></i> <?php echo __('voter'); ?></a></li>
+                            <li><a class="dropdown-item py-2" href="candidate_signup.php"><i class="fas fa-user-tie me-2 theme-text"></i> <?php echo __('candidate'); ?></a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -93,8 +97,11 @@
                     <h1 class="display-3 fw-bold text-dark mb-4"><?php echo __('hero_title'); ?></h1>
                     <p class="lead text-muted mb-5 fs-5"><?php echo __('hero_desc'); ?></p>
                     <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
-                        <a href="signup.php" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow">
+                        <a href="voter_signup.php" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow">
                             <i class="fas fa-check-circle me-2"></i><?php echo __('start_voting'); ?>
+                        </a>
+                        <a href="candidate_signup.php" class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm">
+                            <i class="fas fa-bullhorn me-2"></i><?php echo __('candidate'); ?>
                         </a>
                     </div>
                 </div>
@@ -198,7 +205,7 @@
                         <div class="fs-1 text-primary mb-3"><i class="fas fa-id-card"></i></div>
                         <h5 class="fw-bold"><?php echo __('online_registration'); ?></h5>
                         <p class="small text-muted mb-3">Apply for new voter registration from anywhere.</p>
-                        <a href="signup.php" class="btn btn-outline-primary btn-sm rounded-pill px-4"><?php echo __('register'); ?></a>
+                        <a href="voter_signup.php" class="btn btn-outline-primary btn-sm rounded-pill px-4"><?php echo __('register'); ?></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">

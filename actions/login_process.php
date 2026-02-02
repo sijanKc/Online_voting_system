@@ -8,9 +8,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $role = $_POST['role'];
 
     try {
-        // Fetch user from DB using email
-        $stmt = $pdo->prepare("SELECT id, full_name, password, role, status FROM users WHERE email = ? AND role = ?");
-        $stmt->execute([$email, $role]);
+        // Fetch user from DB using email OR username
+        $stmt = $pdo->prepare("SELECT id, full_name, password, role, status FROM users WHERE (email = ? OR username = ?) AND role = ?");
+        $stmt->execute([$email, $email, $role]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: ../admin/dashboard.php");
                     break;
                 case 'candidate':
-                    header("Location: ../candidate_dashboard.php");
+                    header("Location: ../candidate/dashboard.php");
                     break;
                 default:
                     header("Location: ../voter_dashboard.php");

@@ -157,6 +157,12 @@
                         <p class="text-muted"><?php echo __('voter_subtitle'); ?></p>
                     </div>
 
+                    <?php if(isset($_SESSION['success'])): ?>
+                        <div class="alert alert-success border-0 rounded-4 shadow-sm mb-4">
+                            <i class="fas fa-check-circle me-2"></i> <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>
+                        </div>
+                    <?php endif; ?>
+
                     <?php if(isset($_SESSION['error'])): ?>
                         <div class="alert alert-danger border-0 rounded-4 shadow-sm mb-4">
                             <i class="fas fa-exclamation-circle me-2"></i> <?php echo $_SESSION['error']; unset($_SESSION['error']); ?>
@@ -174,7 +180,7 @@
                         <input type="hidden" name="role" id="login_role" value="voter">
 
                         <div class="mb-4">
-                            <label class="form-label small fw-bold text-muted"><?php echo __('username'); ?></label>
+                            <label class="form-label small fw-bold text-muted">Username/Email</label>
                             <div class="input-group">
                                 <span class="input-group-text border-0 bg-light rounded-start-4 px-3"><i class="fas fa-user text-muted"></i></span>
                                 <input type="text" name="username" class="form-control form-control-lg border-0 bg-light rounded-end-4" required>
