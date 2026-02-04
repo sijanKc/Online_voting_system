@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VOTEPORT | Official Online Voting Portal</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        [data-i18n] {
+            transition: opacity 0.2s ease-in-out;
+        }
+        .lang-loading {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Official Government Top Bar -->
+    <div class="gov-top-bar bg-light py-1 border-bottom d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="small text-muted">
+                <i class="fas fa-landmark me-2 text-primary"></i>
+                <span class="fw-bold" data-i18n="gov_nepal">Government of Nepal</span> | <span data-i18n="official_portal">Official Online Voting Portal</span>
+            </div>
+            <div class="small text-muted">
+                <i class="far fa-calendar-alt me-1"></i> <span data-i18n="date_today">Date: </span> <span id="current-date"></span>
+                <span class="mx-2">|</span>
+                <a href="#" onclick="changeLanguage('en'); return false;" id="lang-en" class="text-decoration-none text-muted">English</a>
+                <span class="mx-1">/</span>
+                <a href="#" onclick="changeLanguage('ne'); return false;" id="lang-ne" class="text-decoration-none text-muted">नेपाली</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Breaking News Ticker -->
+    <div class="news-ticker bg-primary text-white py-2 overflow-hidden position-relative" style="z-index: 1021;">
+        <div class="container d-flex">
+            <span class="fw-bold text-uppercase me-3 border-end pe-3" style="white-space: nowrap;">
+                <i class="fas fa-bullhorn me-2"></i><span data-i18n="latest_update">Latest Notice</span>:
+            </span>
+            <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" class="small pt-1">
+                <span data-i18n="hero_badge">Next-Gen Voting System</span> • Voter list verification is now active for upcoming Phase 2 elections • Please update your citizenship details before the deadline.
+            </marquee>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <div class="logo-box bg-primary text-white rounded-3 p-2 me-3 shadow-sm">
+                    <i class="fas fa-fingerprint fs-3"></i>
+                </div>
+                <div>
+                    <span class="fw-bolder fs-4 text-primary d-block" style="line-height: 1.2;" data-i18n="site_name">VOTEPORT</span>
+                    <small class="text-muted d-block" style="font-size: 0.75rem; margin-top: -2px; letter-spacing: 1px;" data-i18n="official_portal">Official Online Voting Portal</small>
+                </div>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#home" data-i18n="home">Home</a></li>
+                    <li class="nav-item dropdown px-2">
+                        <a class="nav-link dropdown-toggle fw-bold" href="#" data-bs-toggle="dropdown" data-i18n="official_resources">Official Resources</a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3">
+                            <li><a class="dropdown-item py-2" href="#" data-i18n="voter_education">Voter Education</a></li>
+                            <li><a class="dropdown-item py-2" href="#" data-i18n="polling_stations">Polling Stations</a></li>
+                            <li><a class="dropdown-item py-2" href="#" data-i18n="downloads">Downloads</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 text-primary fw-bold" href="https://election.gov.np" target="_blank" data-i18n="election_commission">Election Commission of Nepal</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#how-it-works" data-i18n="how_it_works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link fw-bold" href="#legal" data-i18n="legal_title">Acts & Regulations</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-outline-primary px-4 rounded-pill fw-bold small" href="login.php" data-i18n="login">Login</a>
+                    </li>
+                    <li class="nav-item dropdown ms-lg-2">
+                        <a class="btn btn-primary px-4 rounded-pill fw-bold shadow-sm small dropdown-toggle" href="#" data-bs-toggle="dropdown" data-i18n="register">Join Now</a>
+                        <ul class="dropdown-menu border-0 shadow-sm rounded-3 mt-2">
+                            <li><a class="dropdown-item py-2" href="voter_signup.php"><i class="fas fa-user me-2 theme-text"></i> <span data-i18n="voter">Voter</span></a></li>
+                            <li><a class="dropdown-item py-2" href="candidate_signup.php"><i class="fas fa-user-tie me-2 theme-text"></i> <span data-i18n="candidate">Candidate</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Area -->
+    <header id="home" class="hero py-5" style="background: linear-gradient(135deg, #fff 0%, #f1f3f5 100%);">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content text-center text-lg-start">
+                    <span class="official-badge mb-3 d-inline-block" data-i18n="gov_nepal">Government of Nepal</span>
+                    <h1 class="display-3 fw-bold text-dark mb-4" data-i18n="hero_title">Shaping Democracy With Technology.</h1>
+                    <p class="lead text-muted mb-5 fs-5" data-i18n="hero_desc">Empower your community with a secure, transparent, and immutable voting platform. Accessible to everyone, everywhere.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                        <a href="voter_signup.php" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bold shadow">
+                            <i class="fas fa-check-circle me-2"></i><span data-i18n="start_voting">Start Voting</span>
+                        </a>
+                        <a href="candidate_signup.php" class="btn btn-outline-dark btn-lg px-5 py-3 rounded-pill fw-bold shadow-sm">
+                            <i class="fas fa-bullhorn me-2"></i><span data-i18n="candidate">Candidate</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="position-relative">
+                        <img src="assets/nepal_hero.png" alt="Nepali Voting" class="img-fluid rounded-4 shadow-lg animate-fade">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Election Statistics (Snapshot) -->
+    <section class="py-5 bg-light border-bottom">
+        <div class="container py-4">
+            <div class="row g-4 text-center">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-users"></i></div>
+                        <h2 class="fw-bold text-primary">18.5M+</h2>
+                        <p class="text-muted mb-0 fw-bold text-uppercase small" data-i18n="stats_voters">Registered Voters</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-chair"></i></div>
+                        <h2 class="fw-bold text-primary">275</h2>
+                        <p class="text-muted mb-0 fw-bold text-uppercase small" data-i18n="stats_seats">Total Seats</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fas fa-map-marked-alt"></i></div>
+                        <h2 class="fw-bold text-primary">165</h2>
+                        <p class="text-muted mb-0 fw-bold text-uppercase small" data-i18n="stats_constituencies">Constituencies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice & Press Release Section -->
+    <section class="py-5" style="z-index: 1;">
+        <div class="container py-4">
+            <div class="row g-5">
+                <!-- Notice Board -->
+                <div class="col-lg-7">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h3 class="fw-bold mb-0 text-dark border-start border-primary border-4 ps-3" data-i18n="notice_board">Notice Board</h3>
+                        <a href="#" class="text-primary fw-bold text-decoration-none small"><span data-i18n="view_all">View All</span> <i class="fas fa-arrow-right ms-1"></i></a>
+                    </div>
+                    <div class="notice-board">
+                        <div class="notice-item d-flex align-items-center">
+                            <div class="date-box bg-light p-2 rounded text-center me-3" style="min-width: 65px;">
+                                <span class="d-block fw-bold text-primary fs-5">05</span>
+                                <span class="small text-muted">FEB</span>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Voter Registration Deadline Extension Notice</h6>
+                                <p class="small text-muted mb-0">Information regarding the extension of voter list updating.</p>
+                            </div>
+                            <a href="#" class="ms-auto btn btn-light btn-sm rounded-circle"><i class="fas fa-download"></i></a>
+                        </div>
+                        <div class="notice-item d-flex align-items-center">
+                            <div class="date-box bg-light p-2 rounded text-center me-3" style="min-width: 65px;">
+                                <span class="d-block fw-bold text-primary fs-5">01</span>
+                                <span class="small text-muted">FEB</span>
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">Guidelines for International Observers</h6>
+                                <p class="small text-muted mb-0">Official guidelines released for upcoming elections.</p>
+                            </div>
+                            <a href="#" class="ms-auto btn btn-light btn-sm rounded-circle"><i class="fas fa-download"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Press Releases -->
+                <div class="col-lg-5">
+                    <h3 class="fw-bold mb-4 text-dark border-start border-primary border-4 ps-3" data-i18n="press_releases">Press Releases</h3>
+                    <div class="press-section">
+                        <div class="press-card mb-3">
+                            <h6 class="fw-bold mb-2">ECN holds interactive session with civil society</h6>
+                            <p class="small text-muted">A collaborative meeting was held at the headquarters to discuss transparency.</p>
+                        </div>
+                        <div class="press-card">
+                            <h6 class="fw-bold mb-2">Completion of first phase technical audit</h6>
+                            <p class="small text-muted">The central technical committee has successfully audited digital ballot systems.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voter Services Section (Final ECN Feature) -->
+    <section class="py-5 bg-light">
+        <div class="container py-4">
+            <div class="row g-4 text-center">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card p-4 bg-white rounded-4 shadow-sm h-100 border-top border-primary border-4">
+                        <div class="fs-1 text-primary mb-3"><i class="fas fa-id-card"></i></div>
+                        <h5 class="fw-bold" data-i18n="online_registration">Online Registration</h5>
+                        <p class="small text-muted mb-3">Apply for new voter registration from anywhere.</p>
+                        <a href="voter_signup.php" class="btn btn-outline-primary btn-sm rounded-pill px-4" data-i18n="register">Join Now</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card p-4 bg-white rounded-4 shadow-sm h-100 border-top border-primary border-4">
+                        <div class="fs-1 text-primary mb-3"><i class="fas fa-search-location"></i></div>
+                        <h5 class="fw-bold" data-i18n="voter_search">Voter List Search</h5>
+                        <p class="small text-muted mb-3">Check your name and polling booth in the official list.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill px-4" data-i18n="view_all">View All</button>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card p-4 bg-white rounded-4 shadow-sm h-100 border-top border-primary border-4">
+                        <div class="fs-1 text-primary mb-3"><i class="fas fa-chart-pie"></i></div>
+                        <h5 class="fw-bold" data-i18n="result_portal">Election Results Portal</h5>
+                        <p class="small text-muted mb-3">Live updates and historical election data.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill px-4" data-i18n="view_all">View All</button>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card p-4 bg-white rounded-4 shadow-sm h-100 border-top border-primary border-4">
+                        <div class="fs-1 text-primary mb-3"><i class="fas fa-file-invoice"></i></div>
+                        <h5 class="fw-bold" data-i18n="form_download">Form Downloads</h5>
+                        <p class="small text-muted mb-3">Download all electoral forms and documentation.</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill px-4" data-i18n="downloads">Downloads</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multimedia & Acts (Final Layout) -->
+    <section class="py-5 bg-white clearfix">
+        <div class="container py-4">
+            <div class="row g-5">
+                <!-- Multimedia Gallery -->
+                <div class="col-lg-6">
+                    <h3 class="fw-bold mb-4 text-dark" data-i18n="multimedia_title">Voter Awareness Gallery</h3>
+                    <div class="video-placeholder shadow">
+                        <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?q=80&w=1000&auto=format&fit=crop" class="w-100 h-100 object-fit-cover rounded-4" alt="Video">
+                        <div class="play-btn">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Acts & Legal -->
+                <div id="legal" class="col-lg-6">
+                    <h3 class="fw-bold mb-4 text-dark" data-i18n="legal_title">Acts & Regulations</h3>
+                    <p class="text-muted small mb-4" data-i18n="legal_desc">Official legal documents and voting laws of Nepal.</p>
+                    <div class="legal-item">
+                        <span class="fw-bold small">Election (Offence and Punishment) Act, 2073</span>
+                        <a href="#" class="text-primary"><i class="fas fa-file-pdf fs-4"></i></a>
+                    </div>
+                    <div class="legal-item">
+                        <span class="fw-bold small">Election Commission Act, 2073</span>
+                        <a href="#" class="text-primary"><i class="fas fa-file-pdf fs-4"></i></a>
+                    </div>
+                    <div class="legal-item">
+                        <span class="fw-bold small">Voter List Act, 2073</span>
+                        <a href="#" class="text-primary"><i class="fas fa-file-pdf fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white pt-5 pb-4">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary p-2 rounded text-white me-3">
+                            <i class="fas fa-fingerprint fs-4"></i>
+                        </div>
+                        <h4 class="fw-bold mb-0" data-i18n="site_name">VOTEPORT</h4>
+                    </div>
+                    <p class="text-secondary small">VOTEPORT is a secure, digital-first voting platform designed to empower citizens through transparent, accessible, and inclusive election technologies.</p>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="fw-bold text-white mb-4" data-i18n="official_resources">Official Resources</h6>
+                    <ul class="list-unstyled small text-secondary">
+                        <li class="mb-2"><a href="https://election.gov.np" target="_blank" class="text-secondary text-decoration-none">ECN Official Portal</a></li>
+                        <li class="mb-2" data-i18n="voter_reg_link">Voter Registration Guide</li>
+                        <li class="mb-2" data-i18n="privacy_policy">Privacy Policy</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-4" data-i18n="contact_us">Contact Us</h6>
+                    <p class="text-secondary small mb-2"><i class="fas fa-map-marker-alt me-2 text-primary"></i> <span data-i18n="office_address">Kantipath, Kathmandu, Nepal</span></p>
+                    <p class="text-secondary small mb-2"><i class="fas fa-phone me-2 text-primary"></i> <span data-i18n="phone_number">+977-01-4228663</span></p>
+                    <p class="text-secondary small mb-2"><i class="fas fa-envelope me-2 text-primary"></i> <span data-i18n="email_address">info@voteport.gov.np</span></p>
+                    <p class="text-primary small fw-bold mt-3"><i class="fas fa-clock me-2"></i> <span data-i18n="available_247">Available 24/7 for Election Support</span></p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold text-white mb-4" data-i18n="newsletter_title">Stay Informed</h6>
+                    <p class="text-secondary small mb-3" data-i18n="newsletter_desc">Subscribe for official election notices and system updates.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control bg-secondary bg-opacity-10 border-0 text-white" placeholder="Email" data-i18n-placeholder="email">
+                        <button class="btn btn-primary" type="button" data-i18n="subscribe">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-5 border-secondary opacity-25">
+            <div class="text-center">
+                <p class="small text-secondary mb-0">&copy; 2026 <span data-i18n="site_name">VOTEPORT</span>. Powered by Digital Election Commission.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        const translations = {
+            en: {
+                site_name: 'VOTEPORT',
+                home: 'Home',
+                features: 'Features',
+                about: 'About',
+                contact: 'Contact',
+                login: 'Login',
+                register: 'Join Now',
+                hero_badge: 'Next-Gen Voting System',
+                hero_title: 'Shaping Democracy With Technology.',
+                hero_desc: 'Empower your community with a secure, transparent, and immutable voting platform. Accessible to everyone, everywhere.',
+                start_voting: 'Start Voting',
+                explore_features: 'Explore Features',
+                registered_citizens: 'Citizens already registered',
+                vote_verified: 'Vote Verified',
+                features_title: 'Engineered for Trust',
+                features_desc: 'We provide the tools necessary to conduct fair and fraud-proof elections.',
+                sec_title: 'End-to-End Security',
+                sec_desc: 'Multi-layered encryption and biometric verification protocols keep every vote private and secure.',
+                access_title: 'Universal Access',
+                access_desc: 'Vote from any device. Our platform is optimized for accessibility, catering to all hardware and regions.',
+                analytics_title: 'Real-time Analytics',
+                analytics_desc: 'Administrators can monitor participation rates and view verified results instantly post-closure.',
+                about_title: 'A System Built for Everyone',
+                about_desc: 'Democracy is the foundation of progress. Our mission is to eliminate barriers, reduce costs, and ensure every voice is heard correctly.',
+                citizen_verified: 'Citizen Verified',
+                citizen_desc: 'Automatic identity verification via citizenship credentials ensures one-person-one-vote policy.',
+                dashboards: 'Dynamic Dashboards',
+                dashboards_desc: 'Specialized interfaces for Candidates and Voters to track applications and election history.',
+                contact_info: 'Contact Information',
+                contact_desc: 'Have a question or session issue? Contact the Election Commission support team.',
+                full_name: 'Full Name',
+                email: 'Email',
+                message: 'Message',
+                send: 'Send Message',
+                name_placeholder: 'Enter your full name',
+                email_placeholder: 'Enter your email address',
+                msg_placeholder: 'Write your message here...',
+                footer_links: 'Quick Links',
+                official_resources: 'Official Resources',
+                election_commission: 'Election Commission of Nepal',
+                newsletter_title: 'Stay Informed',
+                newsletter_desc: 'Subscribe for official election notices and system updates.',
+                subscribe: 'Subscribe',
+                voter: 'Voter',
+                candidate: 'Candidate',
+                admin: 'Administrator',
+                how_it_works: 'How It Works',
+                gov_nepal: 'Government of Nepal',
+                official_portal: 'Official Online Voting Portal',
+                latest_update: 'Latest Notice',
+                date_today: 'Date: ',
+                voter_education: 'Voter Education',
+                polling_stations: 'Polling Stations',
+                downloads: 'Downloads',
+                notice_board: 'Notice Board',
+                view_all: 'View All',
+                press_releases: 'Press Releases',
+                online_registration: 'Online Registration',
+                voter_search: 'Voter List Search',
+                result_portal: 'Election Results Portal',
+                form_download: 'Form Downloads',
+                multimedia_title: 'Voter Awareness Gallery',
+                legal_title: 'Acts & Regulations',
+                legal_desc: 'Official legal documents and voting laws of Nepal.',
+                office_address: 'Kantipath, Kathmandu, Nepal',
+                phone_number: '+977-01-4228663',
+                email_address: 'info@voteport.gov.np',
+                available_247: 'Available 24/7 for Election Support',
+                privacy_policy: 'Privacy Policy',
+                voter_reg_link: 'Voter Registration Guide'
+            },
+            ne: {
+                site_name: 'भोटपोर्ट',
+                home: 'गृहपृष्ठ',
+                features: 'विशेषताहरू',
+                about: 'बारेमा',
+                contact: 'सम्पर्क',
+                login: 'लगइन',
+                register: 'दर्ता गर्नुहोस्',
+                hero_badge: 'अर्को पुस्ताको मतदान प्रणाली',
+                hero_title: 'प्रविधिसँगै लोकतन्त्रको निर्माण।',
+                hero_desc: 'सुरक्षित, पारदर्शी र अटल मतदान प्लेटफर्मको साथ आफ्नो समुदायलाई सशक्त बनाउनुहोस्। सबैका लागि, जताततै पहुँचयोग्य।',
+                start_voting: 'मतदान सुरु गर्नुहोस्',
+                explore_features: 'विशेषताहरू हेर्नुहोस्',
+                registered_citizens: 'नागरिकहरू दर्ता भइसकेका छन्',
+                vote_verified: 'मत प्रमाणित भयो',
+                features_title: 'विश्वासको लागि निर्माण गरिएको',
+                features_desc: 'हामी निष्पक्ष र धाँधलीरहित चुनाव सञ्चालन गर्न आवश्यक उपकरणहरू प्रदान गर्दछौं।',
+                sec_title: 'पूर्ण सुरक्षा',
+                sec_desc: 'बहु-स्तरित ईन्क्रिप्शन र बायोमेट्रिक प्रमाणीकरणले प्रत्येक मतलाई निजी र सुरक्षित राख्छ।',
+                access_title: 'विश्वव्यापी पहुँच',
+                access_desc: 'कुनै पनि उपकरणबाट मतदान गर्नुहोस्। हाम्रो प्लेटफर्म सबै हार्डवेयर र क्षेत्रहरूको लागि अनुकूलित छ।',
+                analytics_title: 'तत्काल विश्लेषण',
+                analytics_desc: 'प्रशासकहरूले सहभागिता दरहरूको अनुगमन गर्न सक्छन् र मतदान समाप्ति पछि तुरुन्तै प्रमाणित नतिजाहरू हेर्न सक्छन्।',
+                about_title: 'सबैका लागि बनाइएको प्रणाली',
+                about_desc: 'लोकतन्त्र प्रगतिको आधार हो। हाम्रो मिशन अवरोधहरू हटाउनु, लागत घटाउनु र हरेक आवाज सही तरिकाले सुनिएको सुनिश्चित गर्नु हो।',
+                citizen_verified: 'नागरिक प्रमाणित',
+                citizen_desc: 'नागरिकता प्रमाणपत्र मार्फत स्वचालित पहिचान प्रमाणीकरणले एक-व्यक्ति-एक-मत नीति सुनिश्चित गर्दछ।',
+                dashboards: 'गतिशील ड्यासबोर्डहरू',
+                dashboards_desc: 'उम्मेदवार र मतदाताहरूको लागि आवेदन र चुनाव इतिहास ट्र्याक गर्न विशेष इन्टरफेसहरू।',
+                contact_info: 'सम्पर्क जानकारी',
+                contact_desc: 'कुनै प्रश्न वा सत्र समस्या छ? निर्वाचन आयोग समर्थन टोलीलाई सम्पर्क गर्नुहोस्।',
+                full_name: 'पूरा नाम',
+                email: 'इमेल',
+                message: 'सन्देश',
+                send: 'सन्देश पठाउनुहोस्',
+                name_placeholder: 'तपाईंको पूरा नाम लेख्नुहोस्',
+                email_placeholder: 'तपाईंको इमेल ठेगाना लेख्नुहोस्',
+                msg_placeholder: 'तपाईंको सन्देश यहाँ लेख्नुहोस्...',
+                footer_links: 'द्रुत लिङ्कहरू',
+                official_resources: 'आधिकारिक स्रोतहरू',
+                election_commission: 'निर्वाचन आयोग, नेपाल',
+                newsletter_title: 'जानकारी प्राप्त गर्नुहोस्',
+                newsletter_desc: 'आधिकारिक निर्वाचन सूचनाहरू र प्रणाली अद्यावधिकहरूको लागि सदस्यता लिनुहोस्।',
+                subscribe: 'सदस्यता लिनुहोस्',
+                voter: 'मतदाता',
+                candidate: 'उम्मेदवार',
+                admin: 'प्रशासक',
+                how_it_works: 'यसले कसरी काम गर्छ?',
+                gov_nepal: 'नेपाल सरकार',
+                official_portal: 'आधिकारिक अनलाइन मतदान पोर्टल',
+                latest_update: 'ताजा सूचना',
+                date_today: 'मिति: ',
+                voter_education: 'मतदाता शिक्षा',
+                polling_stations: 'मतदान केन्द्रहरू',
+                downloads: 'फारम डाउनलोड',
+                notice_board: 'सूचना पाटी',
+                view_all: 'सबै हेर्नुहोस्',
+                press_releases: 'प्रेस विज्ञप्ति',
+                online_registration: 'अनलाइन दर्ता',
+                voter_search: 'मतदाता नामावली खोज',
+                result_portal: 'निर्वाचन परिणाम पोर्टल',
+                form_download: 'फारम डाउनलोड',
+                multimedia_title: 'मतदाता शिक्षा ग्यालरी',
+                legal_title: 'ऐन तथा नियमावलीहरू',
+                legal_desc: 'नेपालको आधिकारिक कानुनी दस्तावेज र निर्वाचन कानुनहरू।',
+                office_address: 'कान्तिपथ, काठमाडौं, नेपाल',
+                phone_number: '+९७७-०१-४२२८६६३',
+                email_address: 'info@voteport.gov.np',
+                available_247: 'निर्वाचन सहयोगको लागि २४/७ उपलब्ध',
+                privacy_policy: 'गोपनीयता नीति',
+                voter_reg_link: 'मतदाता दर्ता निर्देशिका'
+            }
+        };
+
+        let currentLang = localStorage.getItem('lang') || 'en';
+
+        function applyTranslations() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerText = translations[currentLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    el.placeholder = translations[currentLang][key];
+                }
+            });
+
+            // Update title
+            document.title = `${translations[currentLang].site_name} | ${translations[currentLang].official_portal}`;
+
+            // Update active state in language switcher
+            document.getElementById('lang-en').classList.toggle('fw-bold', currentLang === 'en');
+            document.getElementById('lang-en').classList.toggle('text-primary', currentLang === 'en');
+            document.getElementById('lang-ne').classList.toggle('fw-bold', currentLang === 'ne');
+            document.getElementById('lang-ne').classList.toggle('text-primary', currentLang === 'ne');
+            
+            document.documentElement.lang = currentLang;
+        }
+
+        function changeLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+            applyTranslations();
+        }
+
+        // Set current date
+        const now = new Date();
+        document.getElementById('current-date').innerText = now.toISOString().split('T')[0];
+
+        // Initial apply
+        applyTranslations();
+    </script>
+</body>
+</html>
