@@ -39,6 +39,37 @@ function __($key) {
     return $translations[$key] ?? $key;
 }
 
+/**
+ * Resolves the correct path for a party logo by checking multiple extensions
+ * @param string $db_path The path stored in database
+ * @return string The actual existing path
+ */
+function resolve_party_logo($db_path) {
+    if (empty($db_path)) return 'assets/images/parties/independent.jpg';
+    
+    // If it's a custom upload (contains 'uploads/'), it should have the correct extension already
+    if (strpos($db_path, 'uploads/') !== false) {
+        return $db_path;
+    }
+
+    $base_name = pathinfo($db_path, PATHINFO_FILENAME);
+    $dir = 'assets/images/parties/';
+    $exts = ['svg', 'png', 'jpg', 'jpeg', 'webp'];
+    
+    // We use __DIR__ because config.php is in /includes/
+    // The project root is one level up from /includes/
+    $root = dirname(__DIR__);
+    
+    foreach ($exts as $ext) {
+        $test_path = $dir . $base_name . '.' . $ext;
+        if (file_exists($root . '/' . $test_path)) {
+            return $test_path;
+        }
+    }
+    
+    return $db_path; // Fallback to whatever was in DB
+}
+
 // Global constants
 define('SITE_NAME', __('site_name'));
 define('BASE_URL', 'http://localhost/online_voting_system/');

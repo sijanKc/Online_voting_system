@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
         // Fetch user from DB using email OR username
-        $stmt = $pdo->prepare("SELECT id, full_name, password, role, status FROM users WHERE (email = ? OR username = ?) AND role = ?");
+        $stmt = $pdo->prepare("SELECT id, first_name, last_name, role, status, province_id, district_id, constituency_id, password FROM users WHERE (email = ? OR username = ?) AND role = ?");
         $stmt->execute([$email, $email, $role]);
         $user = $stmt->fetch();
 
@@ -24,8 +24,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             // Set session variables
             $_SESSION['user_id'] = $user['id'];
-            $_SESSION['user_name'] = $user['full_name'];
-            $_SESSION['role'] = $user['role']; // Using 'role' for consistency in admin check
+            $_SESSION['user_name'] = $user['first_name'] . ' ' . $user['last_name'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['province_id'] = $user['province_id'];
+            $_SESSION['district_id'] = $user['district_id'];
+            $_SESSION['constituency_id'] = $user['constituency_id'];
 
             // Redirect based on role
             switch ($user['role']) {

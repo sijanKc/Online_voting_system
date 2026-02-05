@@ -1,117 +1,95 @@
-# 🇳🇵 VotePort - Online Voting System
+# 🇳🇵 VOTEPORT - Automated Online Voting System
 
-Professional, secure, and multilingual digital voting platform inspired by the **Election Commission of Nepal**.
+**VOTEPORT** is a professional, secure, and fully bilingual (English/Nepali) digital voting ecosystem inspired by the **Election Commission of Nepal (ECN)**. It is designed to modernize the electoral process through geographic security, role-based workflows, and a premium government aesthetic.
 
 ![VotePort Banner](https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?q=80&w=1200&auto=format&fit=crop)
 
+---
+
 ## 🌟 Key Features
 
-- **Official ECN Aesthetic**: Design language inspired by the official Election Commission of Nepal.
-- **Bilingual Support**: Fully localized in **English** and **नेपाली**.
-- **Multi-Role Authentication**: Specific portals for **Voters**, **Candidates**, and **Administrators**.
-- **Dynamic Dashboards**: Role-specific themes and functionalities.
-- **Modern Security**: Biometric placeholders, voter verification flows, and official government-style branding.
-- **Landing Page Hub**: Includes Notice Boards, Press Releases, Voter Education, and Legal Document sections.
+### 🏛️ Official Government Aesthetic
+- **ECN Design Language**: Built using National Crimson Red (`#C8102E`) and Navy Blue (`#003893`) palettes.
+- **Official Top Bar**: Persistent government header with the National Emblem, real-time date, and language toggle.
+- **Interactive News Ticker**: Scrolling "Latest Notice" bar for breaking electoral updates.
+
+### 🌐 Comprehensive Localization
+- **Bilingual Interface**: Seamless toggling between **English** and **नेपाली** across all portals.
+- **Dynamic Content Localization**: Geographic entities (Provinces, Districts, Constituencies) and Political Parties automatically update based on the selected language.
+
+### 🛡️ Geographic Lockdown & Security
+- **Smart Geofencing**: Voters are automatically restricted to see and vote only in elections relevant to their registered Province and Constituency.
+- **Nomination Workflow**: A secure "Apply -> Review -> Approve" chain ensuring only verified candidates appear on the ballot.
+- **Encryption**: Placeholder end-to-end encryption and biometric authentication flows.
+
+### 👥 Specialized Portals
+- **Voter Portal**: Secure ballot casting, profile management, and result tracking.
+- **Candidate Portal**: Campaign dashboard, manifesto management, and real-time nomination tracking.
+- **Admin Command Center**: User approval system, election creation (Provincial/Parliamentary), and live participation analytics.
+
+---
 
 ## 🛠️ Technology Stack
 
-- **Backend**: PHP 8.x
+- **Backend**: PHP 8.x (PDO for Secure MySQL Interaction)
 - **Database**: MySQL (MariaDB)
-- **Frontend**: Bootstrap 5, Vanilla CSS, FontAwesome 6
-- **Scripts**: Vanilla JavaScript (ES6)
-- **Localization**: PHP Array-based dynamic translation system
+- **Frontend**: Bootstrap 5, Vanilla CSS3, FontAwesome 6
+- **Architecture**: Procedural PHP with a centralized Translation Engine
+
+---
 
 ## 📂 Project Structure
 
 ```text
 online_voting_system/
-├── actions/            # PHP Processors (Login, Register, etc.)
-├── assets/             # CSS, JS, and Media files
-│   ├── css/
-│   ├── js/
-│   └── images/
-├── database/           # SQL Schema files
-├── includes/           # Config and helper functions
-├── languages/          # EN/NE translation files
-├── index.php           # Landing Page
-├── login.php           # Login Portal
-├── signup.php          # Registration Page
-└── README.md           # Project Documentation
+├── actions/            # PHP Logic (Login, Signup, Vote Casting)
+├── assets/             # Global Assets (CSS, JS, Logos)
+├── database/           # SQL Schemas & Geographic Data
+├── includes/           # Core Config, Session handling & DB Connection
+├── languages/          # Bilingual JSON/PHP translation files (EN/NE)
+├── admin/              # Election Commission Management Portal
+├── voter/              # Citizen Voting Portal
+├── candidate/          # Candidate Campaign Portal
+└── index.php           # Official Landing Page Hub
 ```
+
+---
 
 ## 🚀 Installation Guide
 
-1. **Prerequisites**:
-   - Install [XAMPP](https://www.apachefriends.org/index.html) or any PHP/MySQL server.
-   
-2. **Database Setup**:
-   - Open **phpMyAdmin** (`http://localhost/phpmyadmin`).
-   - Create a new database named `online_voting_system`.
-   - Import the `database/schema.sql` file.
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/sijanKc/Online_voting_system.git
+   ```
 
-3. **Project Deployment**:
-   - Copy the project folder to `C:\xampp\htdocs\online_voting_system`.
-   - Start **Apache** and **MySQL** in XAMPP Control Panel.
+2. **Server Setup**:
+   - Ensure you are using **XAMPP**, **WAMP**, or any LAMP stack.
+   - Move the project to your `htdocs` or `www` directory.
 
-4. **Access the Application**:
-   - Open your browser and go to `http://localhost/online_voting_system/`.
+3. **Database Setup**:
+   - Create a database named `online_voting_system`.
+   - Import `database/fresh_setup_nepal_election.sql` to populate provinces, districts, and the core schema.
 
-## 🔑 Default Credentials
+4. **Configuration**:
+   - Update `includes/config.php` with your local database credentials if they differ from the default.
 
-- **Admin Invitation Code**: `ADMIN123` (Set in `settings` table)
-
-## 📜 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## 📅 Today's Accomplishments (Feb 1, 2026)
-
-Today we transformed the project into a professional, government-grade voting portal with a fully functional admin system!
-
-### 🎨 UI & Design (ECN Style)
-- **Official ECN Look**: Redesigned the entire landing page to match the **Election Commission of Nepal** aesthetic.
-- **Brand Identity**: Created the **VOTEPORT** logo and branding (Fingerprint + Ballot mark).
-- **Official Colors**: Integrated the exact National Crimson Red (#C8102E) and Navy Blue (#003893).
-- **Gov Header**: Added the official Government Top Bar with the National Emblem and current date.
-- **Interactive Ticker**: Added a scrolling "Latest Notice" ticker for breaking election news.
-
-### 🚀 Key Features
-- **Notice Board**: Fully functional UI for listing official notices and dates.
-- **Press & Media**: Added a dedicated Press Release section and a Multimedia Awareness gallery.
-- **Voter Services**: Implemented a 4-column service grid (Voter Search, Results, Downloads, Online Reg).
-- **Legal Hub**: Added an "Acts & Regulations" section for official legal document downloads.
-- **Refined Footer**: Detailed contact section with the official ECN address and 24/7 support info.
-
-### 🔑 Authentication Refinements
-- **Unified Auth Design**: Both **Login** and **Signup** now use a matching, premium split-panel layout.
-- **Role-Based Themes**: Dynamic background and accent changes for **Voter** (Navy), **Candidate** (Indigo), and **Admin** (Crimson).
-- **Back to Home**: Integrated a seamless "Back to Home" button for better navigation flow.
-- **Security Check**: Restricted Admin registration to specific invitation codes only.
-- **Email Login**: Simplified login to use email addresses for all users.
-
-### 🛡️ Admin Dashboard System
-- **ECN-Styled Dashboard**: Complete admin control panel matching the landing page aesthetic.
-- **Government Top Bar**: Official Crimson & Navy gradient header with admin info and logout.
-- **User Approval System**: Dedicated page to review, approve, or reject voter/candidate applications.
-- **Election Management**: Create and manage election sessions with start/end dates.
-- **Real-Time Statistics**: Live dashboard showing total voters, candidates, pending approvals, and active elections.
-- **Professional Sidebar**: Dark-themed navigation with quick access to all admin functions.
-- **Quick Actions**: One-click access to approve users, create elections, and view results.
-
-### 🌐 Localization
-- **100% Bilingual**: Every new feature, button, and section is fully translated into **English** and **नेपाली**.
-
-### 🔧 Technical Improvements
-- **Database Schema**: Added `username` column for flexible login options.
-- **Path Fixes**: Resolved all include path issues for proper file loading.
-- **Security**: Implemented role-based access control for admin areas.
+5. **Run**:
+   - Navigate to `http://localhost/online_voting_system/`.
 
 ---
-**Developed for Digital Nepal 🇳🇵**
+
+## 🔑 Access Information
+
+- **Voter Registration**: Requires a valid (simulated) 16-digit Citizenship Number.
+- **Admin Access**: Requires a secure **Invitation Code** (Default: `ADMIN123`).
+- **Nomination Flow**: Candidates must be approved by an Admin before appearing on any Ballot.
+
+---
 
 ## 👤 Developed By
 
-- **Sijan KC**
+**Sijan KC**  
+*Dedicated to the Digitalization of Nepal's Democracy.*
 
 ---
-**Developed for Digital Nepal 🇳🇵**
+**VOTEPORT 🇳🇵 | 2026 Registration Division**

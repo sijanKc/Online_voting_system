@@ -1,8 +1,11 @@
 <?php 
 require_once 'includes/config.php'; 
 
-// Protection Logic
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'voter') {
+// Protection Logic - Redirect voters to their new portal
+if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'voter') {
+    header("Location: voter/dashboard.php");
+    exit;
+} else {
     header("Location: login.php");
     exit;
 }

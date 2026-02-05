@@ -12,11 +12,12 @@ try {
     if ($action === 'create') {
         $title = $_POST['title'];
         $type = $_POST['type'];
+        $province_id = !empty($_POST['province_id']) ? $_POST['province_id'] : null;
         $start = $_POST['start_date'];
         $end = $_POST['end_date'];
         
-        $stmt = $pdo->prepare("INSERT INTO elections (title, type, start_date, end_date, status) VALUES (?, ?, ?, ?, 'upcoming')");
-        $stmt->execute([$title, $type, $start, $end]);
+        $stmt = $pdo->prepare("INSERT INTO elections (title, type, province_id, start_date, end_date, status) VALUES (?, ?, ?, ?, ?, 'upcoming')");
+        $stmt->execute([$title, $type, $province_id, $start, $end]);
         
         $_SESSION['success'] = "Election '$title' created successfully.";
     }

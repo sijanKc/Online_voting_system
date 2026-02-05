@@ -52,8 +52,8 @@
                     ?>
                     <tr>
                         <td>
-                            <div class="fw-bold"><?php echo $user['full_name']; ?></div>
-                            <div class="text-muted small">ID: <?php echo $user['citizenship_number']; ?></div>
+                            <div class="fw-bold"><?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name']); ?></div>
+                            <div class="text-muted small">ID: <?php echo htmlspecialchars($user['citizenship_number']); ?></div>
                         </td>
                         <td><span class="badge bg-light text-dark px-3 py-2 rounded-pill small text-capitalize"><?php echo $user['role']; ?></span></td>
                         <td>
@@ -86,7 +86,7 @@
                                         <div class="bg-primary bg-opacity-10 text-primary rounded-circle p-4 d-inline-block mb-3">
                                             <i class="fas fa-user-shield fs-1"></i>
                                         </div>
-                                        <h4 class="fw-bold"><?php echo $user['full_name']; ?></h4>
+                                        <h4 class="fw-bold"><?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name']); ?></h4>
                                         <span class="badge bg-light text-dark px-3 py-2 rounded-pill"><?php echo ucfirst($user['role']); ?> Application</span>
                                     </div>
                                     <div class="row g-3">

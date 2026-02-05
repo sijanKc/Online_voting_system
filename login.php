@@ -80,6 +80,23 @@
 </head>
 <body>
 
+    <!-- Official Government Top Bar -->
+    <div class="gov-top-bar bg-light py-1 border-bottom d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="small text-muted">
+                <i class="fas fa-landmark me-2 text-primary"></i>
+                <span class="fw-bold"><?php echo __('gov_nepal'); ?></span> | <?php echo __('official_portal'); ?>
+            </div>
+            <div class="small text-muted">
+                <i class="far fa-calendar-alt me-1"></i> <?php echo __('date_today'); ?> <?php echo date('Y-m-d'); ?>
+                <span class="mx-2">|</span>
+                <a href="?lang=en" class="text-decoration-none text-muted <?php echo $lang == 'en' ? 'fw-bold text-primary' : ''; ?>">English</a>
+                <span class="mx-1">/</span>
+                <a href="?lang=ne" class="text-decoration-none text-muted <?php echo $lang == 'ne' ? 'fw-bold text-primary' : ''; ?>">नेपाली</a>
+            </div>
+        </div>
+    </div>
+
     <div class="login-container container-fluid p-0 overflow-hidden">
         <div class="row g-0 h-100 min-vh-100">
             
@@ -101,45 +118,45 @@
 
                 <div id="side_info_voter" class="side-info active">
                     <h2 class="fw-bold mb-3"><?php echo __('voter'); ?> Portal</h2>
-                    <p class="fs-5 opacity-75 mb-4">Securely access your ballot and cast your vote for the future of Nepal.</p>
+                    <p class="fs-5 opacity-75 mb-4"><?php echo __('voter_desc'); ?></p>
                     <div class="d-flex align-items-center mb-3">
                         <div class="bg-white bg-opacity-10 p-2 rounded-circle me-3"><i class="fas fa-shield-alt"></i></div>
-                        <span>End-to-End Encryption</span>
+                        <span><?php echo __('encryption'); ?></span>
                     </div>
                     <div class="d-flex align-items-center">
                         <div class="bg-white bg-opacity-10 p-2 rounded-circle me-3"><i class="fas fa-check-double"></i></div>
-                        <span>One Person, One Vote</span>
+                        <span><?php echo __('one_person_one_vote'); ?></span>
                     </div>
                 </div>
 
                 <div id="side_info_candidate" class="side-info">
                     <h2 class="fw-bold mb-3"><?php echo __('candidate'); ?> Portal</h2>
-                    <p class="fs-5 opacity-75 mb-4">Manage your profile, manifesto, and view real-time polling updates.</p>
+                    <p class="fs-5 opacity-75 mb-4"><?php echo __('candidate_desc'); ?></p>
                     <div class="d-flex align-items-center mb-3">
                         <div class="bg-white bg-opacity-10 p-2 rounded-circle me-3"><i class="fas fa-chart-bar"></i></div>
-                        <span>Campaign Analytics</span>
+                        <span><?php echo __('campaign_analytics'); ?></span>
                     </div>
                     <div class="d-flex align-items-center">
                         <div class="bg-white bg-opacity-10 p-2 rounded-circle me-3"><i class="fas fa-user-edit"></i></div>
-                        <span>Profile Management</span>
+                        <span><?php echo __('profile'); ?> Management</span>
                     </div>
                 </div>
 
                 <div id="side_info_admin" class="side-info">
                     <h2 class="fw-bold mb-3"><?php echo __('admin'); ?> Control</h2>
-                    <p class="fs-5 opacity-75 mb-4">Secure administrative access for election monitoring and oversight.</p>
+                    <p class="fs-5 opacity-75 mb-4"><?php echo __('admin_desc'); ?></p>
                     <div class="d-flex align-items-center mb-3">
                         <div class="bg-white bg-opacity-10 p-2 rounded-circle me-3"><i class="fas fa-tools"></i></div>
-                        <span>System Configuration</span>
+                        <span><?php echo __('system_config'); ?></span>
                     </div>
                     <div class="d-flex align-items-center">
                         <div class="bg-white bg-opacity-10 p-2 rounded-circle me-3"><i class="fas fa-user-shield"></i></div>
-                        <span>Voter Verification</span>
+                        <span><?php echo __('voter'); ?> Verification</span>
                     </div>
                 </div>
 
                 <div class="mt-auto opacity-50 small">
-                    <?php echo __('gov_nepal'); ?> | &copy; 2026 Registration Division
+                    <?php echo __('gov_nepal'); ?> | &copy; 2026 <?php echo __('official_portal'); ?>
                 </div>
             </div>
 
@@ -180,7 +197,7 @@
                         <input type="hidden" name="role" id="login_role" value="voter">
 
                         <div class="mb-4">
-                            <label class="form-label small fw-bold text-muted">Username/Email</label>
+                            <label class="form-label small fw-bold text-muted"><?php echo __('user_id_email'); ?></label>
                             <div class="input-group">
                                 <span class="input-group-text border-0 bg-light rounded-start-4 px-3"><i class="fas fa-user text-muted"></i></span>
                                 <input type="text" name="username" class="form-control form-control-lg border-0 bg-light rounded-end-4" required>
@@ -200,9 +217,9 @@
                         </button>
 
                         <div class="text-center">
-                            <p class="text-muted mb-0"><?php echo __('no_account'); ?> <a href="signup.php" class="theme-text fw-bold text-decoration-none"><?php echo __('register'); ?></a></p>
+                            <p class="text-muted mb-0"><?php echo __('dont_have_account'); ?> <a href="signup.php" class="theme-text fw-bold text-decoration-none"><?php echo __('register'); ?></a></p>
                         </div>
-                    </form>
+                   </form>
                 </div>
             </div>
         </div>

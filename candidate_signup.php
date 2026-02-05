@@ -36,6 +36,23 @@
 </head>
 <body>
 
+    <!-- Official Government Top Bar -->
+    <div class="gov-top-bar bg-light py-1 border-bottom d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="small text-muted">
+                <i class="fas fa-landmark me-2 text-primary"></i>
+                <span class="fw-bold"><?php echo __('gov_nepal'); ?></span> | <?php echo __('official_portal'); ?>
+            </div>
+            <div class="small text-muted">
+                <i class="far fa-calendar-alt me-1"></i> <?php echo __('date_today'); ?> <?php echo date('Y-m-d'); ?>
+                <span class="mx-2">|</span>
+                <a href="?lang=en" class="text-decoration-none text-muted <?php echo $lang == 'en' ? 'fw-bold text-primary' : ''; ?>">English</a>
+                <span class="mx-1">/</span>
+                <a href="?lang=ne" class="text-decoration-none text-muted <?php echo $lang == 'ne' ? 'fw-bold text-primary' : ''; ?>">नेपाली</a>
+            </div>
+        </div>
+    </div>
+
     <div class="signup-container container-fluid p-0 overflow-hidden">
         <div class="row g-0 h-100 min-vh-100">
             <!-- Left Side-Panel -->
@@ -93,11 +110,11 @@
                             <h5 class="fw-bold mb-3"><i class="fas fa-id-card me-2 theme-text"></i> <?php echo __('personal_info'); ?></h5>
                             
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">First Name</label>
+                                <label class="form-label small fw-bold text-muted"><?php echo __('first_name'); ?></label>
                                 <input type="text" name="first_name" class="form-control form-control-lg border-0 bg-light rounded-3" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Last Name</label>
+                                <label class="form-label small fw-bold text-muted"><?php echo __('last_name'); ?></label>
                                 <input type="text" name="last_name" class="form-control form-control-lg border-0 bg-light rounded-3" required>
                             </div>
                             
@@ -162,19 +179,7 @@
                                     <?php
                                     $stmt = $pdo->query("SELECT id, name_" . $lang . " as name, logo_path FROM political_parties WHERE status = 'active' ORDER BY name ASC");
                                     while($row = $stmt->fetch()) {
-                                        // Dynamic File Extension Check (fixes SVG/JPG issue)
-                                        $base_name = pathinfo($row['logo_path'], PATHINFO_FILENAME);
-                                        $dir = 'assets/images/parties/';
-                                        $exts = ['svg', 'png', 'jpg', 'jpeg', 'webp'];
-                                        $final_path = $row['logo_path']; // Default fallback from DB
-                                        
-                                        // Check which file actually exists on server
-                                        foreach($exts as $ext) {
-                                            if(file_exists($dir . $base_name . '.' . $ext)) {
-                                                $final_path = $dir . $base_name . '.' . $ext;
-                                                break;
-                                            }
-                                        }
+                                        $final_path = resolve_party_logo($row['logo_path']);
 
                                         echo "<option value='" . $row['id'] . "' data-logo='" . $final_path . "' data-name='" . $row['name'] . "'>" . $row['name'] . "</option>";
                                     }

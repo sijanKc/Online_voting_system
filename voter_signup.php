@@ -34,6 +34,23 @@
 </head>
 <body>
 
+    <!-- Official Government Top Bar -->
+    <div class="gov-top-bar bg-light py-1 border-bottom d-none d-lg-block">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="small text-muted">
+                <i class="fas fa-landmark me-2 text-primary"></i>
+                <span class="fw-bold"><?php echo __('gov_nepal'); ?></span> | <?php echo __('official_portal'); ?>
+            </div>
+            <div class="small text-muted">
+                <i class="far fa-calendar-alt me-1"></i> <?php echo __('date_today'); ?> <?php echo date('Y-m-d'); ?>
+                <span class="mx-2">|</span>
+                <a href="?lang=en" class="text-decoration-none text-muted <?php echo $lang == 'en' ? 'fw-bold text-primary' : ''; ?>">English</a>
+                <span class="mx-1">/</span>
+                <a href="?lang=ne" class="text-decoration-none text-muted <?php echo $lang == 'ne' ? 'fw-bold text-primary' : ''; ?>">नेपाली</a>
+            </div>
+        </div>
+    </div>
+
     <div class="signup-container container-fluid p-0 overflow-hidden">
         <div class="row g-0 h-100 min-vh-100">
             <!-- Left Side-Panel -->
@@ -91,11 +108,11 @@
                             <h5 class="fw-bold mb-3"><i class="fas fa-id-card me-2 theme-text"></i> <?php echo __('personal_info'); ?></h5>
                             
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">First Name</label>
+                                <label class="form-label small fw-bold text-muted"><?php echo __('first_name'); ?></label>
                                 <input type="text" name="first_name" id="first_name" class="form-control form-control-lg border-0 bg-light rounded-3" required>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label small fw-bold text-muted">Last Name</label>
+                                <label class="form-label small fw-bold text-muted"><?php echo __('last_name'); ?></label>
                                 <input type="text" name="last_name" id="last_name" class="form-control form-control-lg border-0 bg-light rounded-3" required>
                             </div>
                             

@@ -3,28 +3,28 @@
         <div class="bg-white bg-opacity-10 p-3 rounded-3 d-inline-block mb-2">
             <i class="fas fa-user-tie fs-2 text-white"></i>
         </div>
-        <h6 class="fw-bold text-white mb-0">Candidate Hub</h6>
-        <small class="text-white-50">Campaign Management</small>
+        <h6 class="fw-bold text-white mb-0"><?php echo __('candidate'); ?> Hub</h6>
+        <small class="text-white-50"><?php echo __('official_portal'); ?></small>
     </div>
 
     <div class="nav flex-column">
         <a href="dashboard.php" class="nav-link-candidate <?php echo basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : ''; ?>">
-            <i class="fas fa-tachometer-alt"></i> Dashboard
+            <i class="fas fa-tachometer-alt"></i> <?php echo __('dashboard'); ?>
         </a>
         <a href="my_profile.php" class="nav-link-candidate <?php echo basename($_SERVER['PHP_SELF']) == 'my_profile.php' ? 'active' : ''; ?>">
-            <i class="fas fa-user-circle"></i> My Profile
+            <i class="fas fa-user-circle"></i> <?php echo __('profile'); ?>
         </a>
         <a href="my_elections.php" class="nav-link-candidate <?php echo basename($_SERVER['PHP_SELF']) == 'my_elections.php' ? 'active' : ''; ?>">
-            <i class="fas fa-vote-yea"></i> My Elections
+            <i class="fas fa-vote-yea"></i> <?php echo __('my_elections'); ?>
         </a>
         <a href="campaign_materials.php" class="nav-link-candidate <?php echo basename($_SERVER['PHP_SELF']) == 'campaign_materials.php' ? 'active' : ''; ?>">
             <i class="fas fa-bullhorn"></i> Campaign Materials
         </a>
         <a href="manifesto.php" class="nav-link-candidate <?php echo basename($_SERVER['PHP_SELF']) == 'manifesto.php' ? 'active' : ''; ?>">
-            <i class="fas fa-file-alt"></i> Manifesto
+            <i class="fas fa-file-alt"></i> <?php echo __('manifesto'); ?>
         </a>
         <a href="analytics.php" class="nav-link-candidate <?php echo basename($_SERVER['PHP_SELF']) == 'analytics.php' ? 'active' : ''; ?>">
-            <i class="fas fa-chart-line"></i> Analytics
+            <i class="fas fa-chart-line"></i> <?php echo __('results'); ?>
         </a>
     </div>
     

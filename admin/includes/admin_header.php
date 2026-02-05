@@ -155,13 +155,18 @@ require_once __DIR__ . "/../../languages/$lang.php";
                 </div>
                 <div class="col-md-6 text-end">
                     <span class="small me-3">
-                        <i class="far fa-calendar-alt me-1"></i> <?php echo date('Y-m-d'); ?>
+                        <i class="far fa-calendar-alt me-1"></i> <?php echo __('date_today'); ?> <?php echo date('Y-m-d'); ?>
+                    </span>
+                    <span class="small me-3 border-end pe-3">
+                        <a href="?lang=en" class="text-decoration-none text-white <?php echo $lang == 'en' ? 'fw-bold border-bottom' : 'opacity-75'; ?>">EN</a>
+                        <span class="mx-1">/</span>
+                        <a href="?lang=ne" class="text-decoration-none text-white <?php echo $lang == 'ne' ? 'fw-bold border-bottom' : 'opacity-75'; ?>">नेपाली</a>
                     </span>
                     <span class="small me-3">
                         <i class="fas fa-user-shield me-1"></i> <?php echo $_SESSION['user_name']; ?>
                     </span>
-                    <a href="../actions/logout.php" class="btn btn-sm btn-light text-danger rounded-pill px-3">
-                        <i class="fas fa-sign-out-alt me-1"></i> Logout
+                    <a href="<?php echo BASE_URL; ?>logout.php" class="btn btn-sm btn-light text-danger rounded-pill px-3">
+                        <i class="fas fa-sign-out-alt me-1"></i> <?php echo __('logout'); ?>
                     </a>
                 </div>
             </div>
@@ -178,13 +183,11 @@ require_once __DIR__ . "/../../languages/$lang.php";
                     </div>
                     <div>
                         <h5 class="fw-bold mb-0 text-dark"><?php echo SITE_NAME; ?></h5>
-                        <small class="text-muted">Admin Control Panel</small>
+                        <small class="text-muted"><?php echo __('admin'); ?> Control Panel</small>
                     </div>
                 </div>
                 <div>
-                    <a href="../index.php" class="btn btn-outline-primary rounded-pill px-4 me-2">
-                        <i class="fas fa-external-link-alt me-2"></i> View Site
-                    </a>
+                    <!-- View Site removed as requested -->
                 </div>
             </div>
         </div>

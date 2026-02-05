@@ -5,9 +5,9 @@
     <!-- Welcome Header -->
     <div class="mb-5">
         <h2 class="fw-bold text-dark mb-2">
-            <i class="fas fa-shield-alt text-danger me-2"></i> Electoral Control Center
+            <i class="fas fa-shield-alt text-danger me-2"></i> <?php echo __('admin'); ?> Control Center
         </h2>
-        <p class="text-muted">Comprehensive oversight and management of the national voting system.</p>
+        <p class="text-muted"><?php echo __('official_portal'); ?></p>
     </div>
 
     <!-- Stats Cards (ECN Style) -->
@@ -38,7 +38,7 @@
             <div class="stat-card-ecn">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-muted small fw-bold text-uppercase mb-1">Registered Voters</p>
+                        <p class="text-muted small fw-bold text-uppercase mb-1"><?php echo __('stats_voters'); ?></p>
                         <h2 class="fw-bold mb-0 text-dark"><?php echo number_format($total_voters); ?></h2>
                     </div>
                     <div class="stat-icon-ecn bg-primary bg-opacity-10 text-primary">
@@ -51,7 +51,7 @@
             <div class="stat-card-ecn">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-muted small fw-bold text-uppercase mb-1">Total Candidates</p>
+                        <p class="text-muted small fw-bold text-uppercase mb-1"><?php echo __('total_candidates'); ?></p>
                         <h2 class="fw-bold mb-0 text-dark"><?php echo number_format($total_candidates); ?></h2>
                     </div>
                     <div class="stat-icon-ecn bg-info bg-opacity-10 text-info">
@@ -64,7 +64,7 @@
             <div class="stat-card-ecn">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-muted small fw-bold text-uppercase mb-1">Pending Approvals</p>
+                        <p class="text-muted small fw-bold text-uppercase mb-1"><?php echo __('pending_approvals'); ?></p>
                         <h2 class="fw-bold mb-0" style="color: #C8102E;"><?php echo number_format($pending_approvals); ?></h2>
                     </div>
                     <div class="stat-icon-ecn bg-danger bg-opacity-10 text-danger">
@@ -77,7 +77,7 @@
             <div class="stat-card-ecn">
                 <div class="d-flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-muted small fw-bold text-uppercase mb-1">Active Elections</p>
+                        <p class="text-muted small fw-bold text-uppercase mb-1"><?php echo __('active_elections'); ?></p>
                         <h2 class="fw-bold mb-0 text-success"><?php echo number_format($active_elections); ?></h2>
                     </div>
                     <div class="stat-icon-ecn bg-success bg-opacity-10 text-success">
@@ -98,8 +98,8 @@
                             <i class="fas fa-user-check"></i>
                         </div>
                         <div>
-                            <h6 class="fw-bold mb-1 text-dark">Approve Users</h6>
-                            <p class="small text-muted mb-0">Verify voter and candidate applications</p>
+                            <h6 class="fw-bold mb-1 text-dark"><?php echo __('user_approvals'); ?></h6>
+                            <p class="small text-muted mb-0"><?php echo __('verify_desc', 'Verify applications'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -142,9 +142,9 @@
         <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
             <div>
                 <h5 class="fw-bold mb-1 text-dark">
-                    <i class="fas fa-list-ul text-primary me-2"></i> Recent Registrations
+                    <i class="fas fa-list-ul text-primary me-2"></i> <?php echo __('recent_registrations'); ?>
                 </h5>
-                <p class="small text-muted mb-0">Latest user applications awaiting review</p>
+                <p class="small text-muted mb-0"><?php echo __('pending_approvals'); ?></p>
             </div>
             <a href="user_approvals.php" class="btn btn-sm btn-outline-primary rounded-pill px-4">
                 View All <i class="fas fa-arrow-right ms-1"></i>
@@ -154,11 +154,11 @@
             <table class="table table-hover align-middle mb-0">
                 <thead style="background: #f8f9fa;">
                     <tr>
-                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted">Applicant</th>
-                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted">Role</th>
-                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted">Applied On</th>
-                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted">Status</th>
-                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted text-end">Action</th>
+                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted"><?php echo __('applicant'); ?></th>
+                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted"><?php echo __('role'); ?></th>
+                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted"><?php echo __('applied_on'); ?></th>
+                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted"><?php echo __('status'); ?></th>
+                        <th class="border-0 py-3 fw-bold small text-uppercase text-muted text-end"><?php echo __('action'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -185,7 +185,7 @@
                                     <i class="fas fa-user"></i>
                                 </div>
                                 <div>
-                                    <div class="fw-bold text-dark"><?php echo htmlspecialchars($user['full_name']); ?></div>
+                                    <div class="fw-bold text-dark"><?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name']); ?></div>
                                     <div class="text-muted small"><?php echo htmlspecialchars($user['email']); ?></div>
                                 </div>
                             </div>
